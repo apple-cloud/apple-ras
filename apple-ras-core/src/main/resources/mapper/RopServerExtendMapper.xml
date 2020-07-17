@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ras.dao.RopServerExtendMapper">
+
+	<sql id="Base_Column_List">
+		server.server_host as host, server.server_port as port
+	</sql>
+
+	<select id="selectForRop" resultType="com.appleframework.ras.model.ServerBo">
+		select
+			<include refid="Base_Column_List" />
+		from
+			rop_server as server, rop_api_server as api
+		where
+			server.state =1 and
+			server.side_type =2 and
+			server.env_type = #{envType,jdbcType=INTEGER} and
+			api.app_id = #{appId,jdbcType=BIGINT} and
+			api.api_id = #{apiId,jdbcType=BIGINT} and
+			server.id = api.server_id 
+		order by api.disorder asc
+	</select>
+	
+	<select id="selectByEnvTypeAndDefault" resultType="com.appleframework.ras.model.ServerBo">
+		select
+			<include refid="Base_Column_List" />
+		from
+			rop_server as server
+		where
+			server.state =1 and server.env_type = #{envType,jdbcType=INTEGER} and server.is_default = 1 limit 1
+	</select>
+	
+	<select id="selectDefaultByAppIdAndEnvType" resultType="com.appleframework.ras.model.ServerBo">
+		select
+			<include refid="Base_Column_List" />
+		from
+			rop_server as server
+		where
+			app_id = #{appId, jdbcType=BIGINT} and 
+			server.state =1 and 
+			server.env_type = #{envType, jdbcType=INTEGER} and 
+			server.is_default = 1 limit 1
+	</select>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.appleframework</groupId>
+		<artifactId>apple-parent</artifactId>
+		<version>10</version>
+	</parent>
+    <groupId>com.appleframework.ras</groupId>
+    <artifactId>apple-ras</artifactId>
+    <version>1.0.0</version>
+
+    <name>apple-ras</name>
+    <description>app端路由寻址</description>
+    <packaging>pom</packaging>
+
+    <modules>
+    	<module>apple-ras-core</module>
+        <module>apple-ras-api</module>
+    </modules>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
