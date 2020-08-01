@@ -1,12 +1,12 @@
 package com.appleframework.ras.api;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gitee.easyopen.ApiConfig;
+import com.gitee.easyopen.AppSecretManager;
 import com.gitee.easyopen.support.ApiController;
 
 /**
@@ -16,8 +16,8 @@ import com.gitee.easyopen.support.ApiController;
 @RequestMapping("router")
 public class IndexController extends ApiController {
 	
-//	@Resource
-//	private Oauth2Manager oauth2Manager;
+	@Resource
+	private AppSecretManager appSecretManager;
 	
     @Override
     protected void initApiConfig(ApiConfig apiConfig) {
@@ -25,18 +25,16 @@ public class IndexController extends ApiController {
     	String appName = "apple-ras-api";
         apiConfig.setShowDoc(true); // 显示文档页面
         // 配置国际化消息
-        Map<String, String> appSecretStore = new HashMap<String, String>();
-        appSecretStore.put("test", "123456");
-        apiConfig.addAppSecret(appSecretStore);
+        apiConfig.setAppSecretManager(appSecretManager);
         apiConfig.setApiName("method");
         apiConfig.setAppKeyName("appkey");
         apiConfig.setSignName("sign");
         apiConfig.setVersionName("v");
         apiConfig.setTraceId("traceId");
         apiConfig.setIgnoreValidate(true);
-        //apiConfig.setDataMode(false);
         apiConfig.setAppName(appName);
         apiConfig.setDataMode(false);
+        apiConfig.setIgnoreValidate(true);
         
 //        apiConfig.setOauth2Manager(oauth2Manager);
         

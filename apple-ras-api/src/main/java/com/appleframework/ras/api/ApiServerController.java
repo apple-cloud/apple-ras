@@ -33,8 +33,8 @@ public class ApiServerController {
 	@Resource
 	private RopAppService ropAppService;
 
-	@Api(name = "by.router.api.server",version = "1.0", wrapResult = false)
-	@ApiDocMethod(description = "寻址")
+	@Api(name = "by.router.api.server",version = "1.0", wrapResult = false, ignoreSign = true)
+	@ApiDocMethod(description = "寻址1.0")
 	public ApiServerResponse apiServerV1(ApiServerRequestV1 request) throws Exception {
 		String appKey = ApiContext.getApiParam().fatchAppKey();
 		String env = request.getEnv();
@@ -42,8 +42,8 @@ public class ApiServerController {
 		return this.getApiServerResponse(appKey, envType);
 	}
 	
-	@Api(name = "by.router.api.server",version = "2.0")
-	@ApiDocMethod(description = "寻址")
+	@Api(name = "by.router.api.server",version = "2.0", wrapResult = false, ignoreSign = true)
+	@ApiDocMethod(description = "寻址2.0")
 	public ApiServerResponse apiServerV2(ApiServerRequestV2 request) throws Exception {
 		String appKey = ApiContext.getApiParam().fatchAppKey();
 		String env = request.getEnv();

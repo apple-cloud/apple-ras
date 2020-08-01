@@ -2,6 +2,10 @@ package com.appleframework.ras.manager;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
 import com.appleframework.ras.entity.RopApp;
 import com.appleframework.ras.service.RopAppService;
 import com.gitee.easyopen.AppSecretManager;
@@ -13,8 +17,10 @@ import com.gitee.easyopen.AppSecretManager;
  *
  * @version 1.0
  */
+@Component
 public class SampleAppSecretManager implements AppSecretManager {
 
+	@Resource
 	private RopAppService ropAppService;
 
 	public String getSecret(String appKey) {
